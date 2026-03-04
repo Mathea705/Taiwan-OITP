@@ -15,7 +15,14 @@ public class IntensityManager : MonoBehaviour
         public float baseEmissionRate;
     }
 
+    struct LightData
+    {
+        public Light light;
+        public float baseIntensity;
+    }
+
     readonly List<FireSystemData[]> _registeredFires = new();
+    readonly List<LightData> _registeredLights = new();
     float _lastIntensity = -1f;
 
     // destroy every other instance so only one instance exists as it is a singleton
@@ -38,9 +45,9 @@ public class IntensityManager : MonoBehaviour
         if (!Mathf.Approximately(intensity, _lastIntensity))
             ApplyIntensity();
     }
-   
-   // register each particle system in the scene as the fire prefab has multiple gameobjects with particle systems
-   // 註冊場景中的每個粒子系統，因為火焰預置體有多個帶有粒子系統的遊戲物件
+
+    // register each particle system in the scene as the fire prefab has multiple gameobjects with particle systems
+    // 註冊場景中的每個粒子系統，因為火焰預置體有多個帶有粒子系統的遊戲物件
     public void Register(ParticleSystem[] systems)
     {
         var data = new FireSystemData[systems.Length];
@@ -59,16 +66,26 @@ public class IntensityManager : MonoBehaviour
         ApplyToSystems(data, intensity);
     }
 
- 
-   // change intensity
-   // 改變強度
+    // register a point light and cache its base intensity so it scales correctly
+    // 註冊點光源並緩存其基礎強度，以便正確縮放
+    public void RegisterLight(Light light)
+    {
+        var data = new LightData { light = light, baseIntensity = light.intensity };
+        _registeredLights.Add(data);
+        light.intensity = data.baseIntensity * intensity;
+    }
+
+    // change intensity
+    // 改變強度
     void ApplyIntensity()
     {
         foreach (var data in _registeredFires)
             ApplyToSystems(data, intensity);
+        foreach (var data in _registeredLights)
+            data.light.intensity = data.baseIntensity * intensity;
         _lastIntensity = intensity;
     }
-    
+
     // apply the changed intensity value to every particle system
     // 將更改過的強度值應用到每個粒子系統
     static void ApplyToSystems(FireSystemData[] data, float value)

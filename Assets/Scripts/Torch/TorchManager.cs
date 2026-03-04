@@ -2,22 +2,18 @@ using UnityEngine;
 
 public class TorchManager : MonoBehaviour
 {
-
-    // marks rod as dont destroy on load so it persists across scenes
+    // marks the torch as dont destroy on load so it persists across scenes
     // 標記物件，使其在載入時不被銷毀，允許它在場景之間持續存在
     void Awake()
     {
         DontDestroyOnLoad(transform.root.gameObject);
     }
 
-      // gets intensitymanager reference in start()
-      // 在 start() 中獲取 intensitymanager 參考
-
+    // registers all particle systems and the point light with the intensity manager
+    // 向強度管理器註冊所有粒子系統和點光源
     void Start()
     {
-        var systems = GetComponentsInChildren<ParticleSystem>(true);
-        IntensityManager.Instance.Register(systems);
-    
-
+        IntensityManager.Instance.Register(GetComponentsInChildren<ParticleSystem>(true));
+        IntensityManager.Instance.RegisterLight(GetComponentInChildren<Light>(true));
     }
 }
