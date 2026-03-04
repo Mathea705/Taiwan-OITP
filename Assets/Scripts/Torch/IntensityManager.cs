@@ -7,7 +7,15 @@ public class IntensityManager : MonoBehaviour
 
     [SerializeField, Range(0f, 1f)] float intensity = 1f;
 
-    readonly List<ParticleSystem[]> _registeredFires = new();
+    struct FireSystemData
+    {
+        public ParticleSystem ps;
+        public float baseSizeMultiplier;
+        public float baseSpeedMultiplier;
+        public float baseEmissionRate;
+    }
+
+    readonly List<FireSystemData[]> _registeredFires = new();
     float _lastIntensity = -1f;
 
     void Awake()
@@ -29,27 +37,39 @@ public class IntensityManager : MonoBehaviour
 
     public void Register(ParticleSystem[] systems)
     {
-        _registeredFires.Add(systems);
-        ApplyToSystems(systems, intensity);
+        var data = new FireSystemData[systems.Length];
+        for (int i = 0; i < systems.Length; i++)
+        {
+            var ps = systems[i];
+            data[i] = new FireSystemData
+            {
+                ps = ps,
+                baseSizeMultiplier = ps.main.startSizeMultiplier,
+                baseSpeedMultiplier = ps.main.startSpeedMultiplier,
+                baseEmissionRate = ps.emission.rateOverTimeMultiplier
+            };
+        }
+        _registeredFires.Add(data);
+        ApplyToSystems(data, intensity);
     }
 
     void ApplyIntensity()
     {
-        foreach (var systems in _registeredFires)
-            ApplyToSystems(systems, intensity);
+        foreach (var data in _registeredFires)
+            ApplyToSystems(data, intensity);
         _lastIntensity = intensity;
     }
 
-    static void ApplyToSystems(ParticleSystem[] systems, float value)
+    static void ApplyToSystems(FireSystemData[] data, float value)
     {
-        foreach (var ps in systems)
+        foreach (var d in data)
         {
-            var main = ps.main;
-            main.startSizeMultiplier = value;
-            main.startSpeedMultiplier = value;
+            var main = d.ps.main;
+            main.startSizeMultiplier = d.baseSizeMultiplier * value;
+            main.startSpeedMultiplier = d.baseSpeedMultiplier * value;
 
-            var emission = ps.emission;
-            emission.rateOverTimeMultiplier = value;
+            var emission = d.ps.emission;
+            emission.rateOverTimeMultiplier = d.baseEmissionRate * value;
         }
     }
 }
