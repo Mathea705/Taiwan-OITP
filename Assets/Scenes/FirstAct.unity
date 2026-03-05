@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 28035072}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.673, y: 0.656, z: 1.452}
+  m_LocalPosition: {x: -0.059, y: 0.656, z: 1.452}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -675,72 +675,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1001 &139253888
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2041864952}
-    m_Modifications:
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.0928307
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.1888051
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371084, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_Name
-      value: Water_Plane
-      objectReference: {fileID: 0}
-    - target: {fileID: 6013632388104371084, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
---- !u!4 &139253889 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6013632388104371080, guid: 6e0965b76baec374d9a8e0c82f9033cb, type: 3}
-  m_PrefabInstance: {fileID: 139253888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &150156220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +1213,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 20000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 5.56e-43, y: 9.5e-44, z: 0, w: 3.5e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -2162,6 +2096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910902307}
   - component: {fileID: 910902308}
+  - component: {fileID: 910902309}
   m_Layer: 0
   m_Name: WaterManager
   m_TagString: Untagged
@@ -2197,9 +2132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.WaterRenderer
   _Layer: 4
-  _Material: {fileID: 0}
+  _Material: {fileID: 2100000, guid: 8ab064b6606504a55b489af2787350c2, type: 2}
   _VolumeMaterial: {fileID: 0}
-  _ChunkTemplate: {fileID: 0}
+  _ChunkTemplate: {fileID: 1516456258233481520, guid: 17840562212c147d6bdb5144d35bc442, type: 3}
   _CastShadows: 0
   _WaterBodyCulling: 1
   _TimeSliceBoundsUpdateFrameCount: 1
@@ -2210,15 +2145,15 @@ MonoBehaviour:
   _TimeProvider: {fileID: 0}
   _WindZone: {fileID: 0}
   _OverrideWindZoneWindSpeed: 0
-  _WindSpeed: 10
+  _WindSpeed: 5
   _OverrideWindZoneWindDirection: 0
-  _WindDirection: 0
+  _WindDirection: -22.093863
   _OverrideWindZoneWindTurbulence: 0
   _WindTurbulence: 0.145
   _OverrideGravity: 0
   _GravityOverride: -9.8
   _GravityMultiplier: 1
-  _PrimaryLight: {fileID: 0}
+  _PrimaryLight: {fileID: 410087040}
   _InjectionPoint: 0
   _WriteToColorTexture: 1
   _WriteToDepthTexture: 1
@@ -2226,7 +2161,7 @@ MonoBehaviour:
   _OverrideRenderHDR: 0
   _RenderHDR: 1
   _Surface:
-    rid: 546772954641334496
+    rid: 546772954641334516
   _ScaleRange: {x: 4, y: 256}
   _DropDetailHeightBasedOnWaves: 0.2
   _Slices: 9
@@ -2242,35 +2177,35 @@ MonoBehaviour:
   _ForceScaleChangeSmoothing: 0
   _TeleportThreshold: 100
   _AnimatedWavesLod:
-    rid: 546772954641334497
+    rid: 546772954641334517
   _DepthLod:
-    rid: 546772954641334498
+    rid: 546772954641334518
   _LevelLod:
-    rid: 546772954641334499
+    rid: 546772954641334519
   _FoamLod:
-    rid: 546772954641334500
+    rid: 546772954641334520
   _DynamicWavesLod:
-    rid: 546772954641334501
+    rid: 546772954641334521
   _FlowLod:
-    rid: 546772954641334502
+    rid: 546772954641334522
   _ShadowLod:
-    rid: 546772954641334503
+    rid: 546772954641334523
   _AbsorptionLod:
-    rid: 546772954641334504
+    rid: 546772954641334524
   _ScatteringLod:
-    rid: 546772954641334505
+    rid: 546772954641334525
   _ClipLod:
-    rid: 546772954641334506
+    rid: 546772954641334526
   _AlbedoLod:
-    rid: 546772954641334507
+    rid: 546772954641334527
   _Reflections:
-    rid: 546772954641334508
+    rid: 546772954641334528
   _Underwater:
-    rid: 546772954641334509
+    rid: 546772954641334529
   _Meniscus:
-    rid: 546772954641334510
+    rid: 546772954641334530
   _Portals:
-    rid: 546772954641334511
+    rid: 546772954641334531
   _ShowWaterProxyPlane: 0
   _FollowSceneCamera: 1
   _EditorMultipleViewpoints: 1
@@ -2287,20 +2222,20 @@ MonoBehaviour:
     _OverrideScale: 0
     _ScaleOverride: 0
     _ForceNoGraphics: 0
-  _Resources: {fileID: 0}
+  _Resources: {fileID: 11400000, guid: 0817af17dea584e5382e6216db162d4a, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 546772954641334496
+    - rid: 546772954641334516
       type: {class: SurfaceRenderer, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Version: 0
         _Enabled: 1
         _MeshType: 0
         _Layer: 4
-        _Material: {fileID: 0}
+        _Material: {fileID: 2100000, guid: 8ab064b6606504a55b489af2787350c2, type: 2}
         _VolumeMaterial: {fileID: 0}
-        _ChunkTemplate: {fileID: 0}
+        _ChunkTemplate: {fileID: 1516456258233481520, guid: 17840562212c147d6bdb5144d35bc442, type: 3}
         _CastShadows: 0
         _WaterBodyCulling: 1
         _TimeSliceBoundsUpdateFrameCount: 1
@@ -2310,7 +2245,7 @@ MonoBehaviour:
         _Debug:
           _UniformTiles: 0
           _DisableSkirt: 0
-    - rid: 546772954641334497
+    - rid: 546772954641334517
       type: {class: AnimatedWavesLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
@@ -2330,7 +2265,7 @@ MonoBehaviour:
         _AttenuationInShallows: 0.95
         _ShallowsMaximumDepth: 1000
         _CollisionSource: 2
-    - rid: 546772954641334498
+    - rid: 546772954641334518
       type: {class: DepthLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
@@ -2345,7 +2280,7 @@ MonoBehaviour:
         _MaximumQueryCount: 512
         _IncludeTerrainHeight: 1
         _EnableSignedDistanceFields: 1
-    - rid: 546772954641334499
+    - rid: 546772954641334519
       type: {class: LevelLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2356,7 +2291,7 @@ MonoBehaviour:
         _Blur: 0
         _BlurIterations: 4
         _Version: 0
-    - rid: 546772954641334500
+    - rid: 546772954641334520
       type: {class: FoamLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
@@ -2370,7 +2305,7 @@ MonoBehaviour:
         _SimulationFrequency: 30
         _Prewarm: 1
         _Settings: {fileID: 0}
-    - rid: 546772954641334501
+    - rid: 546772954641334521
       type: {class: DynamicWavesLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2384,7 +2319,7 @@ MonoBehaviour:
         _SimulationFrequency: 60
         _AttenuationInShallows: 1
         _Settings: {fileID: 0}
-    - rid: 546772954641334502
+    - rid: 546772954641334522
       type: {class: FlowLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2397,7 +2332,7 @@ MonoBehaviour:
         _Version: 0
         _QuerySource: 1
         _MaximumQueryCount: 1024
-    - rid: 546772954641334503
+    - rid: 546772954641334523
       type: {class: ShadowLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
@@ -2417,7 +2352,7 @@ MonoBehaviour:
         _CurrentFrameWeightHard: 0.15
         _AllowNullLight: 0
         _AllowNoShadows: 0
-    - rid: 546772954641334504
+    - rid: 546772954641334524
       type: {class: AbsorptionLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2432,7 +2367,7 @@ MonoBehaviour:
         _ShorelineColor: {r: 0.513, g: 1, b: 1, a: 0.153}
         _ShorelineColorMaximumDistance: 10
         _ShorelineColorFalloff: 2
-    - rid: 546772954641334505
+    - rid: 546772954641334525
       type: {class: ScatteringLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2447,7 +2382,7 @@ MonoBehaviour:
         _ShorelineColor: {r: 0, g: 0.588, b: 1, a: 1}
         _ShorelineColorMaximumDistance: 10
         _ShorelineColorFalloff: 2
-    - rid: 546772954641334506
+    - rid: 546772954641334526
       type: {class: ClipLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2459,7 +2394,7 @@ MonoBehaviour:
         _BlurIterations: 1
         _Version: 0
         _DefaultClippingState: 0
-    - rid: 546772954641334507
+    - rid: 546772954641334527
       type: {class: AlbedoLod, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2470,7 +2405,7 @@ MonoBehaviour:
         _Blur: 0
         _BlurIterations: 1
         _Version: 0
-    - rid: 546772954641334508
+    - rid: 546772954641334528
       type: {class: WaterReflections, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Version: 0
@@ -2480,7 +2415,7 @@ MonoBehaviour:
           serializedVersion: 2
           m_Bits: 1
         _Resolution: 256
-        _Overscan: 1.5
+        _Overscan: 1.2454873
         _RenderOnlySingleCamera: 0
         _Sky: 1
         _DisablePixelLights: 1
@@ -2507,12 +2442,12 @@ MonoBehaviour:
           _DisableRecursiveRendering: 0
           _ForceCompatibility: 0
         _AllowMSAA: 0
-    - rid: 546772954641334509
+    - rid: 546772954641334529
       type: {class: UnderwaterRenderer, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
         _Layer: 4
-        _Material: {fileID: 0}
+        _Material: {fileID: 2100000, guid: f2b096e4d95e646c49d48ece0afa0547, type: 2}
         _EnvironmentalLightingEnable: 0
         _EnvironmentalLightingWeight: 1
         _EnvironmentalLightingVolumeProfile: {fileID: 0}
@@ -2529,15 +2464,15 @@ MonoBehaviour:
           _OnlyReflectionCameras: 0
         _Version: 0
         _AllCameras: 0
-    - rid: 546772954641334510
+    - rid: 546772954641334530
       type: {class: Meniscus, ns: WaveHarmonic.Crest, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 1
         _Layer: 4
-        _Material: {fileID: 0}
+        _Material: {fileID: 2100000, guid: 238e45299a5ec46308e9bf99ddf67963, type: 2}
         _CameraExclusions: 6
         _Version: 0
-    - rid: 546772954641334511
+    - rid: 546772954641334531
       type: {class: PortalRenderer, ns: WaveHarmonic.Crest.Portals, asm: WaveHarmonic.Crest}
       data:
         _Enabled: 0
@@ -2546,6 +2481,56 @@ MonoBehaviour:
         _Invert: 0
         _MaximumResolution: 1024
         _TexelSize: 0.02
+--- !u!114 &910902309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910902306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bb6e05d83b64105a4d8cbd478f5916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: WaveHarmonic.Crest::WaveHarmonic.Crest.ShapeFFT
+  _Mode: 5
+  _Weight: 0.45
+  _Queue: 0
+  _Blend: 1
+  _FeatherWidth: 0.1
+  _FollowHorizontalWaveMotion: 1
+  _Data:
+    rid: -2
+  _DrawBounds: 0
+  _Spectrum: {fileID: 0}
+  _EvaluateSpectrumAtRunTimeEveryFrame: 0
+  _RespectShallowWaterAttenuation: 1
+  _SeaLevelOnly: 0
+  _OverrideGlobalWindDirection: 0
+  _WaveDirectionHeadingAngle: 0
+  _OverrideGlobalWindSpeed: 1
+  _WindSpeed: 28
+  _Resolution: 128
+  _IncludeInDropDetailHeightBasedOnWaves: 0
+  _DrawSlicesInEditor: 0
+  _AlphaSource: 0
+  _OverrideGlobalWindTurbulence: 1
+  _WindTurbulence: 0.2202166
+  _WindAlignment: 0
+  _TimeLoopLength: Infinity
+  _OverrideCulling: 0
+  _MaximumVerticalDisplacement: 10
+  _MaximumHorizontalDisplacement: 15
+  _EnableBakedCollision: 0
+  _TimeResolution: 4
+  _SmallestWavelengthRequired: 2
+  _BakedTimeLoopLength: 32
+  _Version: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &955953082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3909,8 +3894,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 139253889}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107581424
