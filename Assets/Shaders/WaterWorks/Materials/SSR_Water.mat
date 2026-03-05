@@ -87,7 +87,7 @@ Material:
     - _UseFoam: 1
     - _Use_Foam: 1
     - _WaveDist: 5
-    - _WaveFrequency: 105.3
+    - _WaveFrequency: 104
     - _WaveSpeed: 0.05
     - _Wave_Speed: 2
     - _WorkflowMode: 1
