@@ -222,14 +222,14 @@
     },
     "com.unity.searcher": {
       "version": "4.9.4",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
       "version": "17.3.0",
-      "depth": 1,
+      "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "17.3.0",
@@ -338,6 +338,23 @@
         "com.unity.xr.legacyinputhelpers": "2.1.2"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.waveharmonic.crest": {
+      "version": "file:com.waveharmonic.crest/com.waveharmonic.crest",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "14.0.12",
+        "com.unity.shadergraph": "14.0.12"
+      }
+    },
+    "com.waveharmonic.crest.portals": {
+      "version": "file:com.waveharmonic.crest.portals/com.waveharmonic.crest.portals",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.waveharmonic.crest": "5.7.2"
+      }
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

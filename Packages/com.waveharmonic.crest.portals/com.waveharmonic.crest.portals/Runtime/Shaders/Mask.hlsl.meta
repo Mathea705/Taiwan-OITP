@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 452407734d80e45a2a970c5b50f3fd88
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 276975
+  packageName: Crest Water 5 - Portals
+  packageVersion: 1.3.0
+  assetPath: Packages/com.waveharmonic.crest.portals/Runtime/Shaders/Mask.hlsl
+  uploadId: 864536

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fb248a7e7a4da452a8eb7866df62595e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 276975
+  packageName: Crest Water 5 - Portals
+  packageVersion: 1.3.0
+  assetPath: Packages/com.waveharmonic.crest.portals/Runtime/Scripts/Generated/API.Generated.cs
+  uploadId: 864536

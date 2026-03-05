@@ -1,0 +1,63 @@
+// Crest Water System
+// Copyright © 2024 Wave Harmonic. All rights reserved.
+
+#pragma exclude_renderers glcore gles3
+
+#pragma kernel BlurHorizontal
+#pragma kernel BlurVertical
+
+#pragma multi_compile_local d_Float1 d_Float2 d_Float3 d_Float4
+
+#if   d_Float1
+#define m_Type float
+#elif d_Float2
+#define m_Type float2
+#elif d_Float3
+#define m_Type float3
+#elif d_Float4
+#define m_Type float4
+#endif
+
+Texture2DArray<m_Type>   _Crest_Source;
+RWTexture2DArray<m_Type> _Crest_Target;
+
+// (width, height, slices)
+uint _Crest_Resolution;
+
+// 5-tap Gaussian (sigma ≈ 1)
+static const float w0 = 0.4026;
+static const float w1 = 0.2442;
+static const float w2 = 0.0545;
+
+uint2 ClampXY(uint2 p)
+{
+    return clamp(p, 0, _Crest_Resolution - 1);
+}
+
+[numthreads(8, 8, 1)]
+void BlurHorizontal(uint3 id : SV_DispatchThreadID)
+{
+    const int3 p = int3(id.x, id.y, id.z);
+    const int2 xy = p.xy;
+
+    _Crest_Target[p] =
+        _Crest_Source[id] * w0 +
+        _Crest_Source[uint3(ClampXY(xy + int2( 1, 0)), p.z)] * w1 +
+        _Crest_Source[uint3(ClampXY(xy + int2(-1, 0)), p.z)] * w1 +
+        _Crest_Source[uint3(ClampXY(xy + int2( 2, 0)), p.z)] * w2 +
+        _Crest_Source[uint3(ClampXY(xy + int2(-2, 0)), p.z)] * w2;
+}
+
+[numthreads(8, 8, 1)]
+void BlurVertical(uint3 id : SV_DispatchThreadID)
+{
+    const int3 p = int3(id.x, id.y, id.z);
+    const int2 xy = p.xy;
+
+    _Crest_Target[p] =
+        _Crest_Source[id] * w0 +
+        _Crest_Source[uint3(ClampXY(xy + int2(0,  1)), p.z)] * w1 +
+        _Crest_Source[uint3(ClampXY(xy + int2(0, -1)), p.z)] * w1 +
+        _Crest_Source[uint3(ClampXY(xy + int2(0,  2)), p.z)] * w2 +
+        _Crest_Source[uint3(ClampXY(xy + int2(0, -2)), p.z)] * w2;
+}

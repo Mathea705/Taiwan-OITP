@@ -1,0 +1,157 @@
+// Crest Water System
+// Copyright © 2024 Wave Harmonic. All rights reserved.
+
+#pragma exclude_renderers glcore gles3
+
+#pragma kernel CrestShapeCombineAnimatedWaves
+#pragma kernel CrestShapeCopyAnimatedWaves
+#pragma kernel CrestShapeCombineDynamicWaves d_CombineDynamicWaves
+
+#pragma multi_compile_local _ d_Combine
+#pragma multi_compile_local _ d_DynamicWaves
+#pragma multi_compile_local _ d_Flow
+
+#if d_CombineDynamicWaves
+#define d_DynamicWaves 1
+#endif
+
+#include "HLSLSupport.cginc"
+
+#include "Packages/com.waveharmonic.crest/Runtime/Shaders/Library/Macros.hlsl"
+#include "Packages/com.waveharmonic.crest/Runtime/Shaders/Library/Constants.hlsl"
+#include "Packages/com.waveharmonic.crest/Runtime/Shaders/Library/Globals.hlsl"
+#include "Packages/com.waveharmonic.crest/Runtime/Shaders/Library/InputsDriven.hlsl"
+#include "Packages/com.waveharmonic.crest/Runtime/Shaders/Library/Cascade.hlsl"
+
+float _Crest_HorizontalDisplace;
+float _Crest_DisplaceClamp;
+
+Texture2DArray _Crest_WaveBuffer;
+RWTexture2DArray<float4> _Crest_Target;
+
+m_CrestNameSpace
+
+#if d_Flow
+void Flow(const float texel, out float2 offsets, out float2 weights)
+{
+    const float period = max(3.0 * texel, 1.0);
+    const float half_period = period / 2.0;
+    offsets = fmod(float2(g_Crest_Time, g_Crest_Time + half_period), period);
+    weights.x = offsets.x / half_period;
+    if (weights.x > 1.0) weights.x = 2.0 - weights.x;
+    weights.y = 1.0 - weights.x;
+}
+#endif
+
+#if d_Combine
+void SampleDisplacementsCompute(
+    in RWTexture2DArray<float4> i_dispSampler,
+    in float i_resolution, in float3 i_uv_slice,
+    in float i_wt, inout float3 io_worldPos
+) {
+    // NOTE: We have to roll our own bilinear filter in Compute shaders when
+    // reading from a RWTexture. The documentation below explains how SRV
+    // and UAV mappings of the same texture cannot exist at the same time.
+    // https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/sm5-object-rwtexture2d
+
+    // Convert from UV to coordinates
+    const float2 pixelCoord = i_uv_slice.xy * i_resolution;
+
+    // Make relative to pixel centers
+    float2 pixelCoordCenters = pixelCoord - 0.5;
+
+    // Clamp from below and above (desired?)
+    pixelCoordCenters = clamp(pixelCoordCenters, 0.0, i_resolution - 1.0);
+
+    // Compute integral and fractional parts
+    const uint2 pixelCoordCentersBotLeft = floor(pixelCoordCenters);
+    const uint sliceIndex = i_uv_slice.z;
+    const float2 pixelCoordCentersFrac = frac(pixelCoordCenters);
+
+    const half4 dataBotLeft = i_dispSampler[uint3(pixelCoordCentersBotLeft, sliceIndex)];
+    const half4 dataBotRight = i_dispSampler[uint3(pixelCoordCentersBotLeft + uint2(1, 0), sliceIndex)];
+    const half4 dataTopLeft = i_dispSampler[uint3(pixelCoordCentersBotLeft + uint2(0, 1), sliceIndex)];
+    const half4 dataTopRight = i_dispSampler[uint3(pixelCoordCentersBotLeft + uint2(1, 1), sliceIndex)];
+
+    const float4 dataLerped = lerp(
+        lerp(dataBotLeft, dataBotRight, pixelCoordCentersFrac.x),
+        lerp(dataTopLeft, dataTopRight, pixelCoordCentersFrac.x),
+        pixelCoordCentersFrac.y
+    );
+
+    io_worldPos += i_wt * dataLerped.xyz;
+}
+#endif
+
+void ShapeCombine(uint3 id)
+{
+    const uint slice0 = id.z;
+    const Cascade cascade = Cascade::MakeAnimatedWaves(slice0);
+
+    const float3 uv = cascade.IDToUV(id.xy);
+    const float2 positionWSXZ = cascade.UVToWorld(uv);
+
+    float3 result = 0.0;
+
+#if !d_CombineDynamicWaves
+    // Sample in waves for this cascade.
+    {
+#if d_Flow
+        const half2 flow = Cascade::MakeFlow(slice0).SampleFlow(positionWSXZ);
+
+        float2 offsets, weights;
+        Flow(cascade._Texel, offsets, weights);
+
+        result += cascade.SampleAnimatedWavesOverflow(_Crest_WaveBuffer, positionWSXZ - offsets.x * flow, 1.0).xyz * weights.x;
+        result += cascade.SampleAnimatedWavesOverflow(_Crest_WaveBuffer, positionWSXZ - offsets.y * flow, 1.0).xyz * weights.y;
+#else
+        result += _Crest_WaveBuffer[id].xyz;
+#endif
+    }
+#endif
+
+    // Disabled for last LOD.
+#if d_Combine
+    {
+        const Cascade cascade = Cascade::MakeAnimatedWaves(slice0 + 1);
+        // Sample the shape 1 texture at this world position.
+        const float3 uv = cascade.WorldToUV(positionWSXZ);
+        // Waves to combine down from the next lod up the chain.
+        SampleDisplacementsCompute(_Crest_Target, cascade._Resolution, uv, 1.0, result);
+    }
+#endif
+
+#if d_DynamicWaves
+    {
+        // Convert dynamic wave sim to displacements.
+        result += Cascade::MakeDynamicWaves(slice0)
+            .SampleDynamicWavesDisplacement(positionWSXZ, _Crest_HorizontalDisplace, _Crest_DisplaceClamp);
+    }
+#endif
+
+    _Crest_Target[id] = float4(result, 0.0);
+}
+
+void ShapeCombineAnimatedWaves(uint3 id)
+{
+    id.z = _Crest_LodIndex;
+    ShapeCombine(id);
+}
+
+void ShapeCopyAnimatedWaves(uint3 id)
+{
+    ShapeCombine(id);
+}
+
+void ShapeCombineDynamicWaves(uint3 id)
+{
+    // We are combining from the target which matches the Animated Waves descriptor.
+    id.z = _Crest_LodIndex;
+    ShapeCombine(id);
+}
+
+m_CrestNameSpaceEnd
+
+m_CrestKernelDefault(ShapeCombineAnimatedWaves)
+m_CrestKernelDefault(ShapeCopyAnimatedWaves)
+m_CrestKernelDefault(ShapeCombineDynamicWaves)

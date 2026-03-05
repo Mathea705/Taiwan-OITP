@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5621c97bae0d24f168c889a98b005e37
+AssemblyDefinitionReferenceImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 276975
+  packageName: Crest Water 5 - Portals
+  packageVersion: 1.3.0
+  assetPath: Packages/com.waveharmonic.crest.portals/Editor/Scripts/WaveHarmonic.Crest.Portals.asmref
+  uploadId: 864536
