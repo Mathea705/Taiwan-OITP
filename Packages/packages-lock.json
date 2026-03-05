@@ -340,7 +340,7 @@
       "url": "https://packages.unity.com"
     },
     "com.waveharmonic.crest": {
-      "version": "file:com.waveharmonic.crest/com.waveharmonic.crest",
+      "version": "file:C:/Users/mathe/Downloads/com.waveharmonic.crest/com.waveharmonic.crest",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -349,7 +349,7 @@
       }
     },
     "com.waveharmonic.crest.portals": {
-      "version": "file:com.waveharmonic.crest.portals/com.waveharmonic.crest.portals",
+      "version": "file:C:/Users/mathe/Downloads/com.waveharmonic.crest.portals/com.waveharmonic.crest.portals",
       "depth": 0,
       "source": "local",
       "dependencies": {
