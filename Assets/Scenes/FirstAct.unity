@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 23945404}
   - component: {fileID: 23945403}
   - component: {fileID: 23945402}
+  - component: {fileID: 23945406}
   m_Layer: 0
   m_Name: PLACEHOLDER BOAT
   m_TagString: Untagged
@@ -232,6 +233,24 @@ Transform:
   - {fileID: 1978433442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &23945406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23945401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f3969a60fd0fc4c9ad957a7199c842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShipBob
+  bobSmoothSpeed: 1
+  waterlineOffset: 1
+  tiltAmount: 1.5
+  tiltSmoothSpeed: 1
+  sampleDistance: 2
+  bankAmount: 0.5
 --- !u!1 &28035072
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,8 +883,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3903482225804038119, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903482225804038119, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4148778239110795873, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_Name
