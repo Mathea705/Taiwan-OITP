@@ -415,7 +415,7 @@ Transform:
   - {fileID: 1463025409}
   - {fileID: 505433960}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 359.691, z: 0}
 --- !u!114 &28035080
 MonoBehaviour:
   m_ObjectHideFlags: 0
