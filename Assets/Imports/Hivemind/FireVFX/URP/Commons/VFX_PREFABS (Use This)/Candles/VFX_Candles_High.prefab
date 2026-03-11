@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6500326109108976254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7768564551655697865}
+  - component: {fileID: 2342319989427087674}
+  - component: {fileID: 6351202925078261953}
+  - component: {fileID: 3001484835470886521}
+  - component: {fileID: 5774077923315529658}
+  m_Layer: 0
+  m_Name: VFX_Candles_High
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7768564551655697865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500326109108976254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.735, y: 2.25, z: 0.351}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &2342319989427087674
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500326109108976254}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 176ce8026627d0f44b75e86f1e80cb6b, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 1
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array:
+      - m_Value: 2.6
+        m_Name: FlameSize
+        m_Overridden: 0
+      - m_Value: 5
+        m_Name: FlameAngleRandomness
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: RefractionStrength
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: FlameAnimSpeed
+        m_Overridden: 1
+      - m_Value: 100
+        m_Name: MaxDistance
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: Flame_Power
+        m_Overridden: 1
+      - m_Value: 1.5
+        m_Name: Flame_Opacity
+        m_Overridden: 1
+      - m_Value: 3
+        m_Name: FlameEmissive
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: GlowIntensity
+        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array:
+      - m_Value: {x: 0, y: 1, z: 0}
+        m_Name: SmokeDirection
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 1, z: 0}
+        m_Name: WindDirection ( 0 or 1 )
+        m_Overridden: 1
+      - m_Value: {x: 5, y: 10, z: 5}
+        m_Name: FlameDirection/Intensity
+        m_Overridden: 1
+    m_Vector4f:
+      m_Array:
+      - m_Value: {x: 2.1185474, y: 0.30705142, z: 0.077643126, w: 0}
+        m_Name: FlameColor
+        m_Overridden: 1
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array:
+      - m_Value: 1
+        m_Name: SmokeEnabled
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: UseRefraction
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: EnableGlow
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: EnableGlow 1
+        m_Overridden: 1
+--- !u!114 &6351202925078261953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500326109108976254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66946972d336f214c94f3260d9cc7442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 2342319989427087674}
+  lightPrefab: {fileID: 3716165110243566386, guid: dac208106b185634da7fed6d3b74ab60,
+    type: 3}
+  offset: {x: 0, y: 0.75, z: 0}
+  baseIntensity: 0.75
+  flickerAmount: 2
+  flickerSpeed: 5
+  lightRange: 10
+  lightColor: {r: 0.8207547, g: 0.43554202, b: 0.05032932, a: 1}
+--- !u!73398921 &3001484835470886521
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500326109108976254}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &5774077923315529658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500326109108976254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc070ca7070892d40b9a1983b959b004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 2342319989427087674}

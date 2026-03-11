@@ -11,8 +11,8 @@
   <Project Path="WaveHarmonic.Crest.Shared.csproj" />
   <Project Path="WaveHarmonic.Crest.Editor.csproj" />
   <Project Path="WaveHarmonic.Crest.Scripting.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="WaveHarmonic.Crest.Portals.Requirements.csproj" />
   <Project Path="WaveHarmonic.Crest.Editor.Dependents.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="WaveHarmonic.Crest.Samples.Boats.csproj" />
 </Solution>

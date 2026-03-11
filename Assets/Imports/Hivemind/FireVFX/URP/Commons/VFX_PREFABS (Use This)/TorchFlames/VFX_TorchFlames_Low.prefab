@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6311787201771589547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2605826489951727365}
+  - component: {fileID: 1105551401276943858}
+  - component: {fileID: 3478139011807726602}
+  - component: {fileID: 7239041055426801597}
+  - component: {fileID: 5320120658792452769}
+  m_Layer: 0
+  m_Name: VFX_TorchFlames_Low
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2605826489951727365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311787201771589547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.067, y: 0.711, z: -0.009}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &1105551401276943858
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311787201771589547}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 49331261ec41d4e4f8dd96ba53ad2cba, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 1
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array:
+      - m_Value: 1.5
+        m_Name: FlameSize
+        m_Overridden: 1
+      - m_Value: 3
+        m_Name: FlameAngleRandomness
+        m_Overridden: 0
+      - m_Value: 100
+        m_Name: MaxDistance
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: FlameWidth
+        m_Overridden: 0
+      - m_Value: 0.5
+        m_Name: Flame_Power
+        m_Overridden: 1
+      - m_Value: 0.25
+        m_Name: Smoke_Density
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: Flame_Opacity
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: FlameEmissive
+        m_Overridden: 1
+      - m_Value: 0.05
+        m_Name: Fade Distance
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: Bend Power
+        m_Overridden: 1
+      - m_Value: 0.21
+        m_Name: Wind Strength
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: Pivot Offset
+        m_Overridden: 1
+      - m_Value: 15
+        m_Name: EmbersRate
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: Gravity
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: FlameEmissive intensity
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: Ember Size
+        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array:
+      - m_Value: {x: 0, y: 1, z: 0}
+        m_Name: SmokeDirection
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 1, z: 0}
+        m_Name: WindDirection ( 0 or 1 )
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0, z: 5}
+        m_Name: FlameDirection/Intensity
+        m_Overridden: 0
+      - m_Value: {x: 0, y: 0, z: 3}
+        m_Name: Wind Direction
+        m_Overridden: 1
+    m_Vector4f:
+      m_Array:
+      - m_Value: {x: 2.9960785, y: 0.7421284, z: 0.20392162, w: 0}
+        m_Name: FlameColor
+        m_Overridden: 1
+      - m_Value: {x: 0.62352943, y: 0.17254902, z: 0.09019608, w: 1}
+        m_Name: SmokeColor
+        m_Overridden: 1
+      - m_Value: {x: 11.984314, y: 0.6626863, z: 0, w: 1}
+        m_Name: EmbersColor
+        m_Overridden: 1
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array:
+      - m_Value: 1
+        m_Name: SmokeEnabled
+        m_Overridden: 0
+      - m_Value: 1
+        m_Name: UseRefraction
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: EnableGlow
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: EnableGlow 1
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: Horizontal Flip
+        m_Overridden: 1
+--- !u!73398921 &3478139011807726602
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311787201771589547}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &7239041055426801597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311787201771589547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc070ca7070892d40b9a1983b959b004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 1105551401276943858}
+--- !u!114 &5320120658792452769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311787201771589547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66946972d336f214c94f3260d9cc7442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 1105551401276943858}
+  lightPrefab: {fileID: 3716165110243566386, guid: dac208106b185634da7fed6d3b74ab60,
+    type: 3}
+  offset: {x: 0, y: 1, z: 0}
+  baseIntensity: 0.75
+  flickerAmount: 2
+  flickerSpeed: 5
+  lightRange: 15
+  lightColor: {r: 0.9607843, g: 0.4, b: 0.105882354, a: 1}
