@@ -1,0 +1,1 @@
+Kindly delete HDRP Folder if using this for URP.
