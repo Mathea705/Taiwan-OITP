@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8448132175591199265}
   - component: {fileID: 7022331531131128857}
   m_Layer: 0
-  m_Name: VFX_TorchFlames_High
+  m_Name: ModernTorchFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ VisualEffect:
       - m_Value: 2
         m_Name: Bend Power
         m_Overridden: 1
-      - m_Value: 1
+      - m_Value: 1.87
         m_Name: FlameEmissive intensity
         m_Overridden: 1
       - m_Value: 2
@@ -111,19 +111,22 @@ VisualEffect:
       - m_Value: {x: 0, y: 1, z: 0}
         m_Name: WindDirection ( 0 or 1 )
         m_Overridden: 1
-      - m_Value: {x: 0, y: 0, z: 5}
+      - m_Value: {x: 0, y: 2, z: 0}
         m_Name: Wind Direction
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 11.984314, y: 0.6626863, z: 0, w: 1}
+      - m_Value: {x: 11.984314, y: 2.0833182, z: 0, w: 1}
         m_Name: EmbersColor
         m_Overridden: 1
-      - m_Value: {x: 2.9960785, y: 0.7421284, z: 0.20392162, w: 0}
+      - m_Value: {x: 4.131186, y: 1.7186227, z: 0.52614164, w: 0}
         m_Name: FlameColor
         m_Overridden: 1
       - m_Value: {x: 0.62264156, y: 0.17158568, z: 0.09104664, w: 1}
         m_Name: SmokeColor
+        m_Overridden: 1
+      - m_Value: {x: 3.0413551, y: 0.7918725, z: 0, w: 0}
+        m_Name: GlowColor
         m_Overridden: 1
     m_Uint:
       m_Array: []
@@ -142,9 +145,9 @@ VisualEffect:
       - m_Value: 1
         m_Name: SmokeEnabled
         m_Overridden: 0
-      - m_Value: 1
+      - m_Value: 0
         m_Name: UseRefraction
-        m_Overridden: 0
+        m_Overridden: 1
       - m_Value: 1
         m_Name: EnableGlow
         m_Overridden: 0
@@ -163,7 +166,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4978708680088552552}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -172,6 +175,11 @@ VFXRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_StaticBatchInfo:
@@ -191,9 +199,11 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
 --- !u!114 &8448132175591199265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,8 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 5274305135086969753}
-  lightPrefab: {fileID: 3716165110243566386, guid: dac208106b185634da7fed6d3b74ab60,
-    type: 3}
+  lightPrefab: {fileID: 3716165110243566386, guid: dac208106b185634da7fed6d3b74ab60, type: 3}
   offset: {x: 0, y: 1, z: 0}
   baseIntensity: 0.75
   flickerAmount: 2
