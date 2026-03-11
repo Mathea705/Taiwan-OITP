@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TorchManager : MonoBehaviour
 {
-    ParticleSystem[] _systems;
-    float[] _baseSizes, _baseSpeeds, _baseEmissions;
-
+    VisualEffect[] _vfxs;
     Light _light;
+
+    float[] _baseFireIntensity;
+    float[] _baseFlameSize;
+    float[] _baseGlowIntensity;
+    float[] _baseEmbersRate;
     float _baseLight;
 
     float _lastIntensity = -1f;
@@ -17,20 +21,24 @@ public class TorchManager : MonoBehaviour
 
     void Start()
     {
-        _systems = GetComponentsInChildren<ParticleSystem>(true);
-        _baseSizes      = new float[_systems.Length];
-        _baseSpeeds     = new float[_systems.Length];
-        _baseEmissions  = new float[_systems.Length];
+        _vfxs  = GetComponentsInChildren<VisualEffect>(true);
+        _light = GetComponentInChildren<Light>(true);
 
-        for (int i = 0; i < _systems.Length; i++)
+        _baseFireIntensity = new float[_vfxs.Length];
+        _baseFlameSize     = new float[_vfxs.Length];
+        _baseGlowIntensity = new float[_vfxs.Length];
+        _baseEmbersRate    = new float[_vfxs.Length];
+
+        for (int i = 0; i < _vfxs.Length; i++)
         {
-            _baseSizes[i]     = _systems[i].main.startSizeMultiplier;
-            _baseSpeeds[i]    = _systems[i].main.startSpeedMultiplier;
-            _baseEmissions[i] = _systems[i].emission.rateOverTimeMultiplier;
+            _baseFireIntensity[i] = _vfxs[i].GetFloat("Fire Intensity");
+            _baseFlameSize[i]     = _vfxs[i].GetFloat("FlameSize");
+            _baseGlowIntensity[i] = _vfxs[i].GetFloat("GlowIntensity");
+            _baseEmbersRate[i]    = _vfxs[i].GetFloat("EmbersRate");
         }
 
-        _light     = GetComponentInChildren<Light>(true);
-        _baseLight = _light.intensity;
+        if (_light != null)
+            _baseLight = _light.intensity;
     }
 
     void Update()
@@ -38,17 +46,19 @@ public class TorchManager : MonoBehaviour
         float intensity = IntensityManager.Instance.intensity;
         if (Mathf.Approximately(intensity, _lastIntensity)) return;
 
-        for (int i = 0; i < _systems.Length; i++)
-        {
-            var main = _systems[i].main;
-            main.startSizeMultiplier  = _baseSizes[i]     * intensity;
-            main.startSpeedMultiplier = _baseSpeeds[i]    * intensity;
+        float slowSize = Mathf.Pow(intensity, 0.5f);
 
-            var em = _systems[i].emission;
-            em.rateOverTimeMultiplier = _baseEmissions[i] * intensity;
+        for (int i = 0; i < _vfxs.Length; i++)
+        {
+            _vfxs[i].SetFloat("Fire Intensity", _baseFireIntensity[i] * intensity);
+            _vfxs[i].SetFloat("FlameSize",      _baseFlameSize[i]     * slowSize);
+            _vfxs[i].SetFloat("GlowIntensity",  _baseGlowIntensity[i] * intensity);
+            _vfxs[i].SetFloat("EmbersRate",     _baseEmbersRate[i]    * intensity);
         }
 
-        _light.intensity = _baseLight * intensity;
-        _lastIntensity   = intensity;
+        if (_light != null)
+            _light.intensity = _baseLight * (intensity * intensity * intensity * intensity * intensity);
+
+        _lastIntensity = intensity;
     }
 }
