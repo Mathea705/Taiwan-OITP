@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5799115360155097757}
   - component: {fileID: 3481261881059740351}
   m_Layer: 0
-  m_Name: VFX_WallBraziers_High
+  m_Name: OldTorchFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
