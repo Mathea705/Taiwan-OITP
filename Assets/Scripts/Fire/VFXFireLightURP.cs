@@ -79,9 +79,11 @@ public class VFXFireLightURP : MonoBehaviour
     {
         if (urpLight != null)
         {
+            float intensity = IntensityManager.Instance != null ? IntensityManager.Instance.intensity : 1f;
+
             // Smooth flicker using 2D Perlin
             float noise = Mathf.PerlinNoise(Time.time * flickerSpeed, Time.time * 0.33f);
-            urpLight.intensity = baseIntensity + noise * flickerAmount;
+            urpLight.intensity = (baseIntensity + noise * flickerAmount) * intensity;
 
             urpLight.color = lightColor;
             urpLight.range = lightRange;
