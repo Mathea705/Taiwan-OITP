@@ -16,7 +16,6 @@ public class TorchManager : MonoBehaviour
     float[] _baseSmokeDensity;
 
     float _lastIntensity = -1f;
-    float _burstMultiplier = 1f;
 
     void Awake()
     {
@@ -54,27 +53,41 @@ public class TorchManager : MonoBehaviour
         float intensity = IntensityManager.Instance.intensity;
         if (Mathf.Approximately(intensity, _lastIntensity)) return;
 
+        float lightMult, fireMult;
+        if (intensity < 0.7f)
+        {
+            float p = Mathf.Sin(intensity / 0.7f * Mathf.PI * 0.5f); 
+            lightMult = 1f   + 80f  * p * p;
+            fireMult  = 0.8f + 1.0f * p * p;
+        }
+        else if (intensity < 0.92f)
+        {
+            float s = Mathf.SmoothStep(0f, 1f, (intensity - 0.7f) / 0.22f); // long decay
+            lightMult = Mathf.Lerp(81f,  0.88f, s);
+            fireMult  = Mathf.Lerp(1.8f, 0.88f, s);
+        }
+        else
+        {
+            float s = Mathf.SmoothStep(0f, 1f, (intensity - 0.92f) / 0.08f);
+            lightMult = Mathf.Lerp(0.88f, 1f,   s);
+            fireMult  = Mathf.Lerp(0.88f, 0.8f, s);
+        }
+
         float slowSize = Mathf.Pow(intensity, 0.5f);
 
         for (int i = 0; i < _vfxs.Length; i++)
         {
-            _vfxs[i].SetFloat("FlameEmissive",           _baseFlameEmissive[i]          * intensity);
-            _vfxs[i].SetFloat("FlameEmissive intensity", _baseFlameEmissiveIntensity[i] * intensity);
-            _vfxs[i].SetFloat("Flame_Power",             _baseFlamePower[i]             * intensity);
-            _vfxs[i].SetFloat("FlameSize",               _baseFlameSize[i]              * slowSize);
-            _vfxs[i].SetFloat("GlowIntensity",           _baseGlowIntensity[i]          * intensity);
+            _vfxs[i].SetFloat("FlameEmissive",           _baseFlameEmissive[i]          * intensity * fireMult);
+            _vfxs[i].SetFloat("FlameEmissive intensity", _baseFlameEmissiveIntensity[i] * intensity * fireMult);
+            _vfxs[i].SetFloat("Flame_Power",             _baseFlamePower[i]             * intensity * fireMult);
+            _vfxs[i].SetFloat("FlameSize",               _baseFlameSize[i]              * slowSize  * Mathf.Clamp(fireMult, 0.7f, 1f));
+            _vfxs[i].SetFloat("GlowIntensity",           _baseGlowIntensity[i]          * intensity * fireMult);
             _vfxs[i].SetFloat("EmbersRate",              _baseEmbersRate[i]             * intensity);
             _vfxs[i].SetFloat("Smoke_Density",           _baseSmokeDensity[i]           * intensity);
         }
 
         if (_light != null)
-        {
-            if (intensity > _lastIntensity + 0.01f)
-                _burstMultiplier = 10f;
-
-            _burstMultiplier = Mathf.MoveTowards(_burstMultiplier, 1f, 6f * Time.deltaTime);
-            _light.intensity = _baseLight * intensity * _burstMultiplier;
-        }
+            _light.intensity = _baseLight * intensity * lightMult;
 
         _lastIntensity = intensity;
     }
