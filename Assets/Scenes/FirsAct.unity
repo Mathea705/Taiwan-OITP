@@ -8646,7 +8646,7 @@ MonoBehaviour:
   splashPrefab: {fileID: 8765008237907035935, guid: ee1c36be32b35c844beaaec7378d2ac4, type: 3}
   fishActivity: 1
   maxSpawnRate: 40
-  spawnBurst: 20
+  spawnBurst: 30
 --- !u!4 &1853450700
 Transform:
   m_ObjectHideFlags: 0
