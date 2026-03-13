@@ -6,8 +6,9 @@ public class TorchManager : MonoBehaviour
     VisualEffect[] _vfxs;
     Light _light;
     float _baseLight;
+    float _baseRange;
 
-    float[] _baseFlameEmissive;
+    // float[] _baseFlameEmissive;
     float[] _baseFlameEmissiveIntensity;
     float[] _baseFlamePower;
     float[] _baseFlameSize;
@@ -26,9 +27,9 @@ public class TorchManager : MonoBehaviour
     {
         _vfxs  = GetComponentsInChildren<VisualEffect>(true);
         _light = GetComponentInChildren<Light>(true);
-        if (_light != null) _baseLight = _light.intensity;
+        if (_light != null) { _baseLight = _light.intensity; _baseRange = _light.range; }
 
-        _baseFlameEmissive          = new float[_vfxs.Length];
+        // _baseFlameEmissive          = new float[_vfxs.Length];
         _baseFlameEmissiveIntensity = new float[_vfxs.Length];
         _baseFlamePower             = new float[_vfxs.Length];
         _baseFlameSize              = new float[_vfxs.Length];
@@ -38,7 +39,7 @@ public class TorchManager : MonoBehaviour
 
         for (int i = 0; i < _vfxs.Length; i++)
         {
-            _baseFlameEmissive[i]          = _vfxs[i].GetFloat("FlameEmissive");
+            // _baseFlameEmissive[i]          = _vfxs[i].GetFloat("FlameEmissive");
             _baseFlameEmissiveIntensity[i] = _vfxs[i].GetFloat("FlameEmissive intensity");
             _baseFlamePower[i]             = _vfxs[i].GetFloat("Flame_Power");
             _baseFlameSize[i]              = _vfxs[i].GetFloat("FlameSize");
@@ -63,21 +64,21 @@ public class TorchManager : MonoBehaviour
         else if (intensity < 0.92f)
         {
             float s = Mathf.SmoothStep(0f, 1f, (intensity - 0.7f) / 0.22f); // long decay
-            lightMult = Mathf.Lerp(81f,  0.88f, s);
-            fireMult  = Mathf.Lerp(1.8f, 0.88f, s);
+            lightMult = Mathf.Lerp(81f,  1.2f, s);
+            fireMult  = Mathf.Lerp(1.8f, 1.2f, s);
         }
         else
         {
             float s = Mathf.SmoothStep(0f, 1f, (intensity - 0.92f) / 0.08f);
-            lightMult = Mathf.Lerp(0.88f, 1f,   s);
-            fireMult  = Mathf.Lerp(0.88f, 0.8f, s);
+            lightMult = Mathf.Lerp(1.2f, 2.5f,  s);
+            fireMult  = Mathf.Lerp(1.2f, 0.8f, s);
         }
 
         float slowSize = Mathf.Pow(intensity, 0.5f);
 
         for (int i = 0; i < _vfxs.Length; i++)
         {
-            _vfxs[i].SetFloat("FlameEmissive",           _baseFlameEmissive[i]          * intensity * fireMult);
+            // _vfxs[i].SetFloat("FlameEmissive",           _baseFlameEmissive[i]          * intensity * fireMult);
             _vfxs[i].SetFloat("FlameEmissive intensity", _baseFlameEmissiveIntensity[i] * intensity * fireMult);
             _vfxs[i].SetFloat("Flame_Power",             _baseFlamePower[i]             * intensity * fireMult);
             _vfxs[i].SetFloat("FlameSize",               _baseFlameSize[i]              * slowSize  * Mathf.Clamp(fireMult, 0.7f, 1f));
@@ -87,7 +88,10 @@ public class TorchManager : MonoBehaviour
         }
 
         if (_light != null)
+        {
             _light.intensity = _baseLight * intensity * lightMult;
+            _light.range     = _baseRange * Mathf.Max(Mathf.Pow(lightMult, 0.4f), 1.4f * intensity);
+        }
 
         _lastIntensity = intensity;
     }
